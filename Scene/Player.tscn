@@ -443,4 +443,8 @@ editor_draw_limits = true
 wait_time = 0.5
 one_shot = true
 
+[node name="Hurted" type="Timer" parent="."]
+wait_time = 0.3
+
 [connection signal="timeout" from="Invincibility" to="." method="_on_invincibility_timeout"]
+[connection signal="timeout" from="Hurted" to="." method="_on_hurted_timeout"]

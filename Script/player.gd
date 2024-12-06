@@ -60,3 +60,6 @@ func _physics_process(delta):
 
 func _on_invincibility_timeout() -> void:
 	invincible = false
+
+func _on_hurted_timeout() -> void:
+	animation.stop()

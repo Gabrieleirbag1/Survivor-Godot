@@ -2,14 +2,16 @@ extends CharacterBody2D
 
 @onready var animation : AnimatedSprite2D = $AnimatedSprite2D
 @onready var invincibility_timer: Timer = $Invincibility
-@export var speed = 250
-var health = 50
-var health_max = 50
-var health_min = 0
+
+@export var speed: int = 250
+@export var experience: int = 0
+@export var health: int = 50
+@export var health_max: int = 50
+@export var health_min: int = 0
 var alive : bool = true
 var death_animation_played : bool = false
-var immortal = false
-var invincible = false
+var immortal: bool = false
+var invincible: bool = false
 
 func get_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")

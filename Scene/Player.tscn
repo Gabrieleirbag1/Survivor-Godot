@@ -397,7 +397,7 @@ texture_filter = 1
 scale = Vector2(2.2, 2.2)
 sprite_frames = SubResource("SpriteFrames_68fhg")
 animation = &"walk_shadow"
-frame_progress = 0.322743
+frame_progress = 0.444253
 offset = Vector2(0, -5)
 script = ExtResource("3_tuurq")
 
@@ -440,6 +440,7 @@ limit_bottom = 1080
 editor_draw_limits = true
 
 [node name="Invincibility" type="Timer" parent="."]
+wait_time = 0.5
 one_shot = true
 
 [connection signal="timeout" from="Invincibility" to="." method="_on_invincibility_timeout"]

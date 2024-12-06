@@ -184,7 +184,6 @@ animations = [{
 radius = 8.08778
 
 [node name="Enemy" type="CharacterBody2D"]
-position = Vector2(329, 261)
 script = ExtResource("1_qqrid")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

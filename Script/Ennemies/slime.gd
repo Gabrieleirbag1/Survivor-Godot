@@ -5,7 +5,7 @@ func _init() -> void:
 	speed = 50
 	knockback_force = 1500
 	health = 150
-	health_max = 15
+	health_max = 150
 	health_min = 0
 	damage = 2
 	alive = true

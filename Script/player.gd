@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 @onready var animation : AnimatedSprite2D = $AnimatedSprite2D
 @onready var invincibility_timer: Timer = $Invincibility
@@ -8,18 +8,25 @@ extends CharacterBody2D
 @export var speed: int = 250
 
 @export var experience: int = 0
-var level = 1
+var level: int = 1
 
 @export var health: int = 50
 @export var health_max: int = 50
 @export var health_min: int = 0
-
+ 
 var alive : bool = true
 var death_animation_played : bool = false
 var immortal: bool = false
 var invincible: bool = false
 
 func _ready() -> void:
+	EventController.connect("xp_collected", on_event_xp_collected)
+	level = MathXp.calculate_level_from_exp(experience)
+	level_label.text = str(level)
+
+func on_event_xp_collected(value: int) -> void:
+	print(experience, " ", value)
+	experience += value
 	level = MathXp.calculate_level_from_exp(experience)
 	level_label.text = str(level)
 

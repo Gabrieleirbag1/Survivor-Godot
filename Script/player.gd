@@ -40,8 +40,8 @@ func check_health():
 	if immortal:
 		return
 	if health <= 0 and not death_animation_played:
-		alive = false
 		play_animation("death")
+		alive = false
 		death_animation_played = true
 
 func take_damage(enemyVelocity, knockback_force, damage):
@@ -69,6 +69,7 @@ func _on_invincibility_timeout() -> void:
 	invincible = false
 
 func _on_hurted_timeout() -> void:
-	animation.stop()
-	play_animation("idle_shadow")
+	if alive:
+		animation.stop()
+		play_animation("idle_shadow")
 	

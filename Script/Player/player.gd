@@ -3,19 +3,18 @@ class_name Player extends CharacterBody2D
 @onready var animation : AnimatedSprite2D = $AnimatedSprite2D
 @onready var invincibility_timer: Timer = $Invincibility
 @onready var hurted_timer: Timer = $Hurted
-
+@onready var zoom_timer: Timer = $Zoom
 @onready var texture_rect: TextureRect = $Level/Control/TextureRect
 @onready var level_label: Label = $Level/Control/Level_label
+@onready var camera: Camera2D = $Camera2D
 
 @export var speed: int = 250
-
 @export var experience: int = 0
-var level: int = 1
-
 @export var health: int = 50
 @export var health_max: int = 50
 @export var health_min: int = 0
  
+var level: int = 1
 var alive : bool = true
 var death_animation_played : bool = false
 var immortal: bool = false
@@ -36,12 +35,21 @@ func play_animation(animation_name: String) -> void:
 		return
 	animation.play(animation_name)
 
+func death_zoom() -> void:
+	var death_zoom = Vector2(0.1, 0.1)
+	zoom_timer.wait_time = 0.01
+	for i in range(40):
+		camera.zoom += death_zoom
+		zoom_timer.start()
+		await zoom_timer.timeout
+
 func die():
 	play_animation("death")
 	level_label.queue_free()
 	texture_rect.queue_free()
 	alive = false
 	death_animation_played = true
+	await death_zoom()
 
 func check_health():
 	if immortal:

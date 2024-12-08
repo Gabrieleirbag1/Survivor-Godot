@@ -473,10 +473,12 @@ script = ExtResource("8_w4vrf")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.5, 2.5)
+process_callback = 0
 limit_left = 0
 limit_top = 0
 limit_right = 1920
 limit_bottom = 1080
+position_smoothing_enabled = true
 editor_draw_limits = true
 
 [node name="Invincibility" type="Timer" parent="."]
@@ -486,6 +488,8 @@ one_shot = true
 [node name="Hurted" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="Zoom" type="Timer" parent="."]
 
 [connection signal="timeout" from="Invincibility" to="." method="_on_invincibility_timeout"]
 [connection signal="timeout" from="Hurted" to="." method="_on_hurted_timeout"]

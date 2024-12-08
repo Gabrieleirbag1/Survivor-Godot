@@ -3,6 +3,8 @@ class_name Player extends CharacterBody2D
 @onready var animation : AnimatedSprite2D = $AnimatedSprite2D
 @onready var invincibility_timer: Timer = $Invincibility
 @onready var hurted_timer: Timer = $Hurted
+
+@onready var texture_rect: TextureRect = $Level/Control/TextureRect
 @onready var level_label: Label = $Level/Control/Level_label
 
 @export var speed: int = 250
@@ -25,7 +27,6 @@ func _ready() -> void:
 	level_label.text = str(level)
 
 func on_event_xp_collected(value: int) -> void:
-	print(experience, " ", value)
 	experience += value
 	level = MathXp.calculate_level_from_exp(experience)
 	level_label.text = str(level)
@@ -35,13 +36,18 @@ func play_animation(animation_name: String) -> void:
 		return
 	animation.play(animation_name)
 
+func die():
+	play_animation("death")
+	level_label.queue_free()
+	texture_rect.queue_free()
+	alive = false
+	death_animation_played = true
+
 func check_health():
 	if immortal:
 		return
 	if health <= 0 and not death_animation_played:
-		play_animation("death")
-		alive = false
-		death_animation_played = true
+		die()
 
 func take_damage(enemyVelocity, knockback_force, damage):
 	if not invincible:
@@ -88,4 +94,3 @@ func _on_hurted_timeout() -> void:
 	if alive:
 		animation.stop()
 		play_animation("idle_shadow")
-	

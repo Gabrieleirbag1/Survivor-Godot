@@ -26030,6 +26030,7 @@ navigation_enabled = false
 [node name="XP" parent="." instance=ExtResource("15_4wxva")]
 position = Vector2(865, 746)
 scale = Vector2(3, 3)
+xp_type = "large"
 
 [node name="Player" parent="." instance=ExtResource("10_7yrxj")]
 position = Vector2(812, 756)
